@@ -1,15 +1,14 @@
 import 'css/common.css'
 import './index.css'
-
 import Vue from 'vue'
 import axios from 'axios'
 import url from 'js/api.js'
-import MintUI from 'mint-ui'
 
 import { InfiniteScroll } from 'mint-ui';
 Vue.use(InfiniteScroll);
 
-import Foot from 'components/Foot'
+import Foot from 'components/Foot.vue'
+import Swipe from 'components/Swipe.vue'
 
 let app = new Vue({
     el: '#app',
@@ -18,10 +17,12 @@ let app = new Vue({
         pageNum: 1,
         pageSize: 6,
         loading: false, //true表示可以加载
-        allLoaded: false //是否完全加载
+        allLoaded: false, //是否完全加载
+        bannerLists: null
     },
     created(){
-        this.getLists()
+        this.getLists();
+        this.getBanner()
     },
     methods: {
         //是否在加载中
@@ -37,18 +38,25 @@ let app = new Vue({
                 if(curLists.length < this.pageSize){
                     this.allLoaded = true
                 }
+                //如果不这么写,数据只会在页面刷新,而不是增加刷新
                 if(this.lists) {
                     this.lists = this.lists.concat(curLists)
                 } else{
                     //第一次请求数据
                     this.lists = curLists
                 }
-                this.loading = false  //请求完之后才允许再次请求
+                this.loading = false;  //请求完之后才允许再次请求
                 this.pageNum++
             })
-        }
+        },
+        getBanner(){
+            axios.get(url.banner).then(res => {
+                this.bannerLists = res.data.lists
+            })
+        },
     },
     components:{
-        Foot
+        Foot,
+        Swipe
     }
 })
