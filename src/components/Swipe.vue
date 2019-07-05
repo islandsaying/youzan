@@ -10,7 +10,7 @@
     <div class="swiper-pagination"></div>
   </div> 
 </template>
-
+ 
 <style>
   .swiper-slide img{
     height: 100%;
