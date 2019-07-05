@@ -12,7 +12,7 @@ new Vue({
         topList: null,
         topIndex: 0,  //初始放在综合排行
         subData: null,
-        rankData: null
+        rankData: ""   //null也有数据,但是报错,所以改成了""
     },
     created(){
         this.getTopList();
