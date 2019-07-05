@@ -40,6 +40,9 @@ new Vue({
           axios.get(url.rank).then(res => {
             this.rankData = res.data.data   //根据封装数据的实际情况来,此处为data
           })
+        },
+        toSearch(list){
+          location.href = `search.html?keyword=${list.name}&id=${list.id}`
         }
     },
     components:{
