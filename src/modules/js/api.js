@@ -4,16 +4,11 @@ let url = {
     topList: '/category/topList',
     subList:'/category/subList',
     rank:'/category/rank',
-    searchList: '/search/list',
-    details: '/goods/details',
-    deal: '/goods/deal'
-
-    
+    searchList: '/search/list'
 };
 
 // 开发环境和真实环境的切换
 let host = 'http://rap2api.taobao.org/app/mock/7058';
-//let host = 'https://easy-mock.com/mock/5cdf9e46ca410e607a1193b3/youzan'
 
 for(let  key in url){
     if(url.hasOwnProperty(key)){
