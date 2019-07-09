@@ -9,39 +9,45 @@ import Vue from 'vue'
 import url from 'js/api.js'
 import axios from 'axios'
 import qs from 'qs'
-
+import Swipe from 'components/Swipe.vue'
 
 let {id} = qs.parse(location.search.substr(1)) //非常重要,贯穿整个页面的传递
+console.log(location.search)
+console.log({id})
 let detailTab = ['商品详情','本店成交']
 
 
 new Vue({
     el:'#app',
     data:{
-        id,
         details: null,
         detailTab,
         tabIndex: 0, 
-        dealLists: null
+        dealLists: null,
+        bannerLists: null
     },
     created(){
-        console.log(1);
         this.getDetails()
     },
     methods:{
         getDetails(){
-            axios.get(url.details,{id:this.id}).then(res => {
+            axios.get(url.details,{id}).then(res => {
                 this.details = res.data.data
-                //console.log(this.details);
-                //console.log(res.data.data);
                 //console.log(res);
-                //console.log(url)
+                //console.log(res.data);
+                //console.log(res.data.data)
+                this.bannerLists = []
+                this.details.imgs.forEach(item=>{  //获取的imgs是一个Array
+                    this.bannerLists.push({
+                        clickUrl:'',
+                        img:item
+                    })
+                })
             })
         },
         getDeal(){
             axios.get(url.deal,{id}).then(res => {
                 this.dealLists = res.data.data.lists
-                
             })
         },
         changeTab(index){
@@ -55,6 +61,8 @@ new Vue({
         numFilter(price){
           return price.toFixed(2)
         }
-      }
-
+    },
+    components:{
+        Swipe
+    }
 })
