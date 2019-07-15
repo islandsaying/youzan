@@ -1,5 +1,5 @@
 <template>
-  <div class="container " style="min-height: 581px;">
+  <div class="container" style="min-height: 581px;">
     <div class="content">
       <div class="user-infos">
         <div class="pull-left avatar">
@@ -84,7 +84,6 @@
 </template>
 
 <style scoped>
- @import './member_base.css';
- @import './member.css';
+  @import './member_base.css';
+  @import './member.css';
 </style>
-

@@ -1,11 +1,12 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view>
+    </router-view>
   </div>
 </template>
 
 <style scoped>
-  @import  './address_base.css';
-  @import  './address.css';
+  @import './address_base.css';
+  @import './address.css';
 </style>
 <!--入口在member.html那里-->
